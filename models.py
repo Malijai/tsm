@@ -158,7 +158,7 @@ class Tribunal(models.Model):
     issue = models.ManyToManyField(Fins, verbose_name="Achèvement du programme par :")
     evaluation = models.BooleanField(verbose_name="Cliquer si ce tribunal a fait l'objet d'une évaluation de son programme")
     resume = models.TextField(verbose_name="Résumé de l'évaluation", blank=True, null=True)
-    author = models.ForeignKey(User, blank=True, null=True)
+    author = models.ForeignKey(User, blank=True, null=True, on_delete=models.DO_NOTHING)
     posted = models.DateTimeField(db_index=True, auto_now_add=True)
 
     def __str__(self):
