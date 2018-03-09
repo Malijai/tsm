@@ -3,17 +3,48 @@
 from django.contrib import admin
 
 from .models import Delits, Ages, Diagnostics, Decisions, Prerequis, Typetraitements, Echecs, Succes, Surveillances, Fins, Tribunal
+from .models import Exclus, References, Judiciaires, Conditions, Partenaires, Professionnels, Equipe, Reunions
+from .models import Limites, Echecmotifs,Evaluations
+
+#class DocumentInline(admin.StackedInline):
+class EquipeInline(admin.TabularInline):
+    model = Equipe
+#    verbose_name_plural = "Les professionnels"
+    fields = ['profession','nombre','duree','tache']
+
 
 
 class TribunalAdmin(admin.ModelAdmin):
     fieldsets = [
-        ('Identification', {'fields': [('nom', 'province'), 'adresse', 'tsmfile']}),
-        ('Eligibilité', {'fields': ['typedelits', 'age','diagnostic']}),
-        ('Processus d admission', {'fields': [('decision', 'prerequis')]}),
-        ('Caractéristiques du traitement', {'fields': ['traitementtype', 'traitementduree','medication']}),
-        ('Conformité & Adhérence', {'fields': ['echec', 'succes', 'surveillance', 'issue']}),
-        ('Évaluation', {'fields': ['evaluation', 'resume']}),
+        ('A- Description générale ', {'fields': [('nom', 'province'), 'adresse',
+                                     ('nomresponsable', 'formationresponsable','responcontact'),
+                                     ('rapportannuel','tsmfile'),
+                                     'debut','objectifs','clientele'
+                                     ]}),
+        ('B- Sélection des participants', {'fields': [('etapejudiciaire', 'reference'),
+                                     ('prerequis','age'),
+                                     ('diagnostic','typedelits','prerequistexte'),
+                                     'exclusions', ('decision', 'decisionpouvoir'), 'delais']}),
+        ('C- Fonctionnement', {'fields': [('traitementtype', 'traitementtexte','medication'),
+                                          ('condition','conditiontexte'),
+                                          ('respectcondition','reussitedef'),
+                                          ('echec','echectexte'),
+                                          ('succes','succestexte'),
+                                          ('finbool','fintexte'),
+                                          ('progdureebool','traitementduree','traitementmin','traitementmax')]}),
+        ('D- Partenariats', {'fields': [('autreprogramme','autreprogramtexte','autreaffilie'),
+                                        ('partenariat','partenariattexte')]}),
+        ('S- Statistiques du programme', {'fields': [('limiteparticipants','partactif'),('autrejur','autrejurtext'),
+                                        ('partmoyen','nbreussi','nbechoue','echecmotif')]}),
+                                        ('Évaluation', {'fields': ['evaluation', 'resume']}),
+
+        ('Détails techniques', {'fields': [('territoire', 'affiliation'), 'communication',
+                                        ('evaluation', 'evalquand', 'evaltype', 'evalqui', 'resume'),
+                                        ('evaluationfuture', 'evafuturedetail')]}),
+        ('P- Les professionnels', {'fields': ['reunionfreq', 'reunionpresence']}),
     ]
+
+    inlines = [EquipeInline,]
 
     list_display = ('nom', 'province')
 
@@ -34,4 +65,14 @@ admin.site.register(Echecs)
 admin.site.register(Succes)
 admin.site.register(Surveillances)
 admin.site.register(Fins)
+admin.site.register(Exclus)
+admin.site.register(References)
+admin.site.register(Judiciaires)
+admin.site.register(Conditions)
+admin.site.register(Partenaires)
+admin.site.register(Professionnels)
+admin.site.register(Reunions)
+admin.site.register(Limites)
+admin.site.register(Echecmotifs)
+admin.site.register(Evaluations)
 
