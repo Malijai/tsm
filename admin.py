@@ -16,7 +16,7 @@ class EquipeInline(admin.TabularInline):
 
 class TribunalAdmin(admin.ModelAdmin):
     fieldsets = [
-        ('A- Description générale ', {'fields': [('nom', 'province'), 'adresse',
+        ('A- Description générale ', {'fields': [('nom', 'province'), 'adresse','siteweb',
                                      ('nomresponsable', 'formationresponsable','responcontact'),
                                      ('rapportannuel','tsmfile'),
                                      'debut','objectifs','clientele'
@@ -36,9 +36,8 @@ class TribunalAdmin(admin.ModelAdmin):
                                         ('partenariat','partenariattexte')]}),
         ('S- Statistiques du programme', {'fields': [('limiteparticipants','partactif'),('autrejur','autrejurtext'),
                                         ('partmoyen','nbreussi','nbechoue','echecmotif')]}),
-                                        ('Évaluation', {'fields': ['evaluation', 'resume']}),
 
-        ('Détails techniques', {'fields': [('territoire', 'affiliation'), 'communication',
+        ('Détails techniques et Évaluation', {'fields': [('territoire', 'affiliation'), 'communication',
                                         ('evaluation', 'evalquand', 'evaltype', 'evalqui', 'resume'),
                                         ('evaluationfuture', 'evafuturedetail')]}),
         ('P- Les professionnels', {'fields': ['reunionfreq', 'reunionpresence']}),
