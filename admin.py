@@ -21,10 +21,11 @@ class TribunalAdmin(admin.ModelAdmin):
                                      ('rapportannuel','tsmfile'),
                                      'debut','objectifs','clientele'
                                      ]}),
-        ('B- Sélection des participants', {'fields': [('etapejudiciaire', 'reference'),
+        ('B- Sélection des participants', {'fields': ['etapejudiciaire', ('reference','referencetxt'),
                                      ('prerequis','age'),
                                      ('diagnostic','typedelits','prerequistexte'),
-                                     'exclusions', ('decision', 'decisionpouvoir'), 'delais']}),
+                                     ('exclusions','exclusiontexte'),
+                                     ('decision', 'decisionpouvoir'), 'delais']}),
         ('C- Fonctionnement', {'fields': [('traitementtype', 'traitementtexte','medication'),
                                           ('condition','conditiontexte'),
                                           ('respectcondition','reussitedef'),
@@ -35,7 +36,8 @@ class TribunalAdmin(admin.ModelAdmin):
         ('D- Partenariats', {'fields': [('autreprogramme','autreprogramtexte','autreaffilie'),
                                         ('partenariat','partenariattexte')]}),
         ('S- Statistiques du programme', {'fields': [('limiteparticipants','partactif'),('autrejur','autrejurtext'),
-                                        ('partmoyen','nbreussi','nbechoue','echecmotif')]}),
+                                        'partmoyen',('nbreussi','nbreussitxt'),
+                                        ('nbechoue','nbechouetxt'),'echecmotif']}),
 
         ('Détails techniques et Évaluation', {'fields': [('territoire', 'affiliation'), 'communication',
                                         ('evaluation', 'evalquand', 'evaltype', 'evalqui', 'resume'),

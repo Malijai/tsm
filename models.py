@@ -1,5 +1,4 @@
 # -*- coding: utf-8 -*-
-
 from __future__ import unicode_literals
 from django.contrib.auth.models import User
 from django.db import models
@@ -292,6 +291,7 @@ class Tribunal(models.Model):
     clientele = models.TextField(verbose_name="7) Clientèle cible du programme", blank=True, null=True)
     etapejudiciaire = models.ManyToManyField(Judiciaires, default='1',verbose_name="8) * À quelle étape du processus judiciaire les participants sont-ils référés au programme?")
     reference = models.ManyToManyField(References, default='1', verbose_name="9) * De qui proviennent les références de vos participants à ce programme?")
+    referencetxt = models.TextField(verbose_name="9+) Détails", blank=True, null=True)
     prerequis = models.ManyToManyField(Prerequis, default='1', verbose_name="10) * Quels sont les critères d’admissibilité?")
     age = models.ManyToManyField(Ages, verbose_name="10+) Quels sont les critères d'age?")
     diagnostic = models.ManyToManyField(Diagnostics, default='1', verbose_name="10+) Diagnostics ou antécédents psychiatriques admis")
@@ -306,7 +306,7 @@ class Tribunal(models.Model):
     traitementtexte = models.TextField(verbose_name="14a) Détails sur les services offerts aux participants", blank=True, null=True)
     medication = models.BooleanField(verbose_name="Cliquer si une médication est obligatoire")
     condition = models.ManyToManyField(Conditions, default='1', verbose_name="15) * Quelles sont les conditions à respecter une fois dans le programme?")
-    conditiontexte = models.TextField(max_length=250,verbose_name="15a) Détails des conditions", blank=True, null=True)
+    conditiontexte = models.TextField(verbose_name="15a) Détails des conditions", blank=True, null=True)
     respectcondition = models.BooleanField(verbose_name="16) Est-ce que le respect des conditions indiquées à la question 15 mène à la réussite du programme?")
     reussitedef = models.TextField(verbose_name="16b) Si non, qu’est-ce qui entraîne la réussite du programme?", blank=True, null=True)
     echec = models.ManyToManyField(Echecs, default='1', verbose_name="17) * Quelles conséquences s’appliquent en cas de non-respect des conditions?")
@@ -329,13 +329,15 @@ class Tribunal(models.Model):
     reunionfreq = models.TextField(verbose_name="P2- Y a-t-il des réunions/discussions d’équipe? Si oui, à quelle fréquence? Qui est présent?", blank=True, null=True)
     reunionpresence = models.CharField(max_length=250,verbose_name="P3- De façon générale combien de dosiiers un intervenant peut-il avoir à sa charge?", blank=True, null=True)
     limiteparticipants = models.ForeignKey(Limites, default='1', verbose_name="S1- Avez-vous une limite de participants?", on_delete=models.DO_NOTHING)
-    partactif = models.IntegerField(default=0, verbose_name="S2- Combien avez-vous de participants actifs actuellement?", blank=True, null=True)
+    partactif = models.CharField(max_length=250, default=0, verbose_name="S2- Combien avez-vous de participants actifs actuellement?", blank=True, null=True)
     autrejur = models.BooleanField(verbose_name="S3- Recevez-vous des participants d’autres juridictions?")
     autrejurtext = models.TextField(verbose_name="S3a- Si oui: dans quelles circonstances?", blank=True, null=True)
     partmoyen = models.IntegerField(default=0, verbose_name="S4- En moyenne, combien de nouveaux participants intègrent le programme chaque mois?", blank=True, null=True)
     nbreussi = models.IntegerField(default=0, verbose_name="S5a- Combien de participants ont complété le programme dans la dernière année?", blank=True, null=True)
+    nbreussitxt = models.TextField(verbose_name="S5a + Détails (complété le programme)", blank=True, null=True)
     nbechoue = models.IntegerField(default=0, verbose_name="S5b- Combien de participants ont échoué au programme dans la dernière année?", blank=True, null=True)
-    echecmotif = models.ManyToManyField(Echecmotifs, default='1', verbose_name="S6- Quels sont les motifs les plus fréquents d'échec du programme?")
+    nbechouetxt = models.TextField(verbose_name="S5b + Détails (échoué au programme)", blank=True, null=True)
+    echecmotif = models.ManyToManyField(Echecmotifs, verbose_name="S6- Quels sont les motifs les plus fréquents d'échec du programme?")
     territoire = models.CharField(max_length=250,verbose_name="1) * Quelle juridiction territoriale votre programme dessert-il?", blank=True, null=True)
     affiliation = models.CharField(max_length=250,verbose_name="2) * À quel(s) tribunal/aux votre programme est-il affilié?", blank=True, null=True)
     communication = models.TextField(verbose_name="3) Avec quels autres programmes de tribunaux spécialisés en santé mentale (province ou pays) êtes vous en communication et à quelle fréquence?", blank=True, null=True)
@@ -360,8 +362,8 @@ class Equipe(models.Model):
     tribunal = models.ForeignKey(Tribunal, on_delete=models.DO_NOTHING)
     profession = models.ForeignKey(Professionnels, on_delete=models.DO_NOTHING,verbose_name="* Professionnels" )
     nombre = models.IntegerField(default=0)
-    duree = models.DecimalField(default=0, max_digits=5, decimal_places=2,verbose_name="Temps de travail")
-    tache = models.CharField(max_length=200, blank=True, null=True)
+    duree = models.CharField(max_length=250, verbose_name="Temps de travail",blank=True, null=True)
+    tache = models.TextField(blank=True, null=True)
 
     class Meta:
        ordering = ['tribunal','nombre']
