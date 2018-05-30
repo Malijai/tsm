@@ -21,7 +21,7 @@ class TribunalAdmin(admin.ModelAdmin):
                                      ('rapportannuel','tsmfile'),
                                      'debut','objectifs','clientele'
                                      ]}),
-        ('B- Sélection des participants', {'fields': ['etapejudiciaire', ('reference','referencetxt'),
+        ('B- Sélection des participants', {'fields': [('etapejudiciaire','etapejudiciairtxt'), ('reference','referencetxt'),
                                      ('prerequis','age'),
                                      ('diagnostic','typedelits','prerequistexte'),
                                      ('exclusions','exclusiontexte'),
