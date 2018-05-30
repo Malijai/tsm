@@ -290,6 +290,7 @@ class Tribunal(models.Model):
     objectifs = models.TextField(verbose_name="6) * Objectifs du programme", blank=True, null=True)
     clientele = models.TextField(verbose_name="7) Clientèle cible du programme", blank=True, null=True)
     etapejudiciaire = models.ManyToManyField(Judiciaires, default='1',verbose_name="8) * À quelle étape du processus judiciaire les participants sont-ils référés au programme?")
+    etapejudiciairtxt = models.TextField(verbose_name="8 +)Détails", blank=True, null=True)
     reference = models.ManyToManyField(References, default='1', verbose_name="9) * De qui proviennent les références de vos participants à ce programme?")
     referencetxt = models.TextField(verbose_name="9+) Détails", blank=True, null=True)
     prerequis = models.ManyToManyField(Prerequis, default='1', verbose_name="10) * Quels sont les critères d’admissibilité?")
