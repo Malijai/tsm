@@ -14,9 +14,6 @@ class Delits(models.Model):
     def __str__(self):
        return '%s' % self.description
 
-    def __unicode__(self):
-       return u'%s' % self.description
-
 
 class Ages(models.Model):
     #mineurs + majeurs; majeurs seulement ...
@@ -28,9 +25,6 @@ class Ages(models.Model):
     def __str__(self):
        return '%s' % self.description
 
-    def __unicode__(self):
-       return u'%s' % self.description
-
 
 class Diagnostics(models.Model):
     description = models.CharField(max_length=100, verbose_name="Types de diagnostics")
@@ -40,9 +34,6 @@ class Diagnostics(models.Model):
 
     def __str__(self):
         return '%s' % self.description
-
-    def __unicode__(self):
-        return u'%s' % self.description
 
 
 class Decisions(models.Model):
@@ -54,9 +45,6 @@ class Decisions(models.Model):
     def __str__(self):
         return '%s' % self.description
 
-    def __unicode__(self):
-        return u'%s' % self.description
-
 
 class Prerequis(models.Model):
     description = models.CharField(max_length=100, verbose_name="Prérequis")
@@ -66,9 +54,6 @@ class Prerequis(models.Model):
 
     def __str__(self):
         return '%s' % self.description
-
-    def __unicode__(self):
-        return u'%s' % self.description
 
 
 class Typetraitements(models.Model):
@@ -80,9 +65,6 @@ class Typetraitements(models.Model):
     def __str__(self):
         return '%s' % self.description
 
-    def __unicode__(self):
-        return u'%s' % self.description
-
 
 class Echecs(models.Model):
     description = models.CharField(max_length=100, verbose_name="Conséquences en cas de non suivi du programme")
@@ -92,9 +74,6 @@ class Echecs(models.Model):
 
     def __str__(self):
         return '%s' % self.description
-
-    def __unicode__(self):
-        return u'%s' % self.description
 
 
 class Succes(models.Model):
@@ -107,9 +86,6 @@ class Succes(models.Model):
     def __str__(self):
         return '%s' % self.description
 
-    def __unicode__(self):
-        return u'%s' % self.description
-
 
 class Surveillances(models.Model):
     # mineurs + majeurs; majeurs seulement ...
@@ -121,8 +97,6 @@ class Surveillances(models.Model):
     def __str__(self):
         return '%s' % self.description
 
-    def __unicode__(self):
-        return u'%s' % self.description
 
 class Fins(models.Model):
     # mineurs + majeurs; majeurs seulement ...
@@ -133,9 +107,6 @@ class Fins(models.Model):
 
     def __str__(self):
         return '%s' % self.description
-
-    def __unicode__(self):
-        return u'%s' % self.description
 
 
 class Judiciaires(models.Model):
@@ -148,9 +119,6 @@ class Judiciaires(models.Model):
     def __str__(self):
         return '%s' % self.description
 
-    def __unicode__(self):
-        return u'%s' % self.description
-
 
 class References(models.Model):
     # provenance des références pour le programme
@@ -161,9 +129,6 @@ class References(models.Model):
 
     def __str__(self):
         return '%s' % self.description
-
-    def __unicode__(self):
-        return u'%s' % self.description
 
 
 class Exclus(models.Model):
@@ -176,9 +141,6 @@ class Exclus(models.Model):
     def __str__(self):
         return '%s' % self.description
 
-    def __unicode__(self):
-        return u'%s' % self.description
-
 
 class Conditions(models.Model):
     # provenance des références pour le programme
@@ -189,9 +151,6 @@ class Conditions(models.Model):
 
     def __str__(self):
         return '%s' % self.description
-
-    def __unicode__(self):
-        return u'%s' % self.description
 
 
 class Partenaires(models.Model):
@@ -204,9 +163,6 @@ class Partenaires(models.Model):
     def __str__(self):
         return '%s' % self.description
 
-    def __unicode__(self):
-        return u'%s' % self.description
-
 
 class Professionnels(models.Model):
     # provenance des références pour le programme
@@ -217,9 +173,6 @@ class Professionnels(models.Model):
 
     def __str__(self):
         return '%s' % self.description
-
-    def __unicode__(self):
-        return u'%s' % self.description
 
 
 class Reunions(models.Model):
@@ -232,9 +185,6 @@ class Reunions(models.Model):
     def __str__(self):
         return '%s' % self.description
 
-    def __unicode__(self):
-        return u'%s' % self.description
-
 
 class Limites(models.Model):
         # provenance des références pour le programme
@@ -246,9 +196,6 @@ class Limites(models.Model):
     def __str__(self):
         return '%s' % self.description
 
-    def __unicode__(self):
-        return u'%s' % self.description
-
 
 class Echecmotifs(models.Model):
     description = models.CharField(max_length=100, verbose_name="Causes d'échec")
@@ -259,9 +206,6 @@ class Echecmotifs(models.Model):
     def __str__(self):
         return '%s' % self.description
 
-    def __unicode__(self):
-        return u'%s' % self.description
-
 
 class Evaluations(models.Model):
     description = models.CharField(max_length=100, verbose_name="Évaluations")
@@ -271,9 +215,6 @@ class Evaluations(models.Model):
 
     def __str__(self):
         return '%s' % self.description
-
-    def __unicode__(self):
-        return u'%s' % self.description
 
 
 class Tribunal(models.Model):
@@ -355,9 +296,6 @@ class Tribunal(models.Model):
     def __str__(self):
         return '%s' % self.nom
 
-    def __unicode__(self):
-        return u'%s' % self.nom
-
 
 class Equipe(models.Model):
     tribunal = models.ForeignKey(Tribunal, on_delete=models.DO_NOTHING)
@@ -371,6 +309,3 @@ class Equipe(models.Model):
 
     def __str__(self):
         return '%s %s %s %s' % (self.profession, self.nombre, self.duree, self.tache)
-
-    def __unicode__(self):
-        return u'%s %s %s %s' % (self.profession, self.nombre, self.duree, self.tache)
