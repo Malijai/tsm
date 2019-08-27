@@ -77,7 +77,6 @@ class Echecs(models.Model):
 
 
 class Succes(models.Model):
-    # mineurs + majeurs; majeurs seulement ...
     description = models.CharField(max_length=100, verbose_name="Conséquences en cas d'adhérence au programme")
 
     class Meta:
@@ -88,7 +87,6 @@ class Succes(models.Model):
 
 
 class Surveillances(models.Model):
-    # mineurs + majeurs; majeurs seulement ...
     description = models.CharField(max_length=100, verbose_name="Surveillance")
 
     class Meta:
@@ -99,7 +97,6 @@ class Surveillances(models.Model):
 
 
 class Fins(models.Model):
-    # mineurs + majeurs; majeurs seulement ...
     description = models.CharField(max_length=100, verbose_name="Achèvement du programme")
 
     class Meta:
@@ -121,7 +118,6 @@ class Judiciaires(models.Model):
 
 
 class References(models.Model):
-    # provenance des références pour le programme
     description = models.CharField(max_length=100, verbose_name="Références au programme")
 
     class Meta:
@@ -132,7 +128,6 @@ class References(models.Model):
 
 
 class Exclus(models.Model):
-    # provenance des références pour le programme
     description = models.CharField(max_length=100, verbose_name="Exclusions du programme")
 
     class Meta:
@@ -143,7 +138,6 @@ class Exclus(models.Model):
 
 
 class Conditions(models.Model):
-    # provenance des références pour le programme
     description = models.CharField(max_length=100, verbose_name="Conditions")
 
     class Meta:
@@ -154,7 +148,6 @@ class Conditions(models.Model):
 
 
 class Partenaires(models.Model):
-    # provenance des références pour le programme
     description = models.CharField(max_length=100, verbose_name="Partenaire")
 
     class Meta:
@@ -165,7 +158,6 @@ class Partenaires(models.Model):
 
 
 class Professionnels(models.Model):
-    # provenance des références pour le programme
     description = models.CharField(max_length=100, verbose_name=" * Professionnels")
 
     class Meta:
@@ -176,7 +168,6 @@ class Professionnels(models.Model):
 
 
 class Reunions(models.Model):
-        # provenance des références pour le programme
     description = models.CharField(max_length=100, verbose_name="Réunions")
 
     class Meta:
@@ -187,7 +178,6 @@ class Reunions(models.Model):
 
 
 class Limites(models.Model):
-        # provenance des références pour le programme
     description = models.CharField(max_length=100, verbose_name="Limites")
 
     class Meta:
@@ -226,7 +216,7 @@ class Tribunal(models.Model):
     responcontact = models.BooleanField(verbose_name="2a) Cliquer si c'est la personne à contacter si nous nemons une étude ultérieure")
     siteweb = models.CharField(max_length=250,verbose_name="3) * Adresse du site web du programme", blank=True, null=True)
     rapportannuel = models.BooleanField(verbose_name="4) * Cliquer s'il y a un rapport annuel")
-    tsmfile = models.FileField(upload_to='DocsReferences', verbose_name="4a) Rapport annuel de ce programme ou de la documentation utile", blank=True, null=True)
+    tsmfile = models.FileField(upload_to='DocsReferences', verbose_name="4a) Rapport annuel de ce programme ou de la documentation utile", help_text="ATTENTION PAS D'ACCENT DANS LE NOM DU FICHIER", blank=True, null=True)
     debut = models.CharField(max_length=250,verbose_name="5) * Depuis quand ce programme existe-t-il? (mois et année si possible)", blank=True, null=True)
     objectifs = models.TextField(verbose_name="6) * Objectifs du programme", blank=True, null=True)
     clientele = models.TextField(verbose_name="7) Clientèle cible du programme", blank=True, null=True)
